@@ -54,3 +54,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'jwt'
+gem 'jquery-rails'
+gem "attr_encrypted", "~> 3.1.0"
+gem "awesome_print"
+gem 'dotenv-rails'

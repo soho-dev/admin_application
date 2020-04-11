@@ -1,14 +1,28 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>SohoPoc</title>
+    <title>Admin Application</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <%= yield %>
+  <body class= "<%= user_signed_in? ? 'no-skin' : 'login-layout light-login' %>">
+    <%= render :partial => "layouts/header" %>
+    <% if flash[:notice].present? %>
+      <div class="alert alert-success flash-notice-alert">
+        <%= notice %>
+      </div>
+    <% end %>
+    <div class="main-container" id="main-container">
+      <% if user_signed_in? %>
+        <%= render :partial => "layouts/sidebar" %>
+      <% end %>
+      <div class="main-content">
+        <% if user_signed_in? %>
+          <%= render :partial => "layouts/breadcrumbs" %>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>
