@@ -2,7 +2,6 @@ module Api
   module V1
     class LocationServicesController < ApiApplicationController
       def create
-        byebug
         @response = ::LocationService.get_address_info({address: params["address"]})
         respond_to do |format|
           if @response.status == 200

@@ -3,7 +3,7 @@ class LoanApplicationsController < ApplicationController
   # before_filter :authenticate_admin
   before_action :set_loan_application, only: [:show, :edit, :update, :destroy]
   def index
-    @loan_applications = LoanApplication.page(params[:page]).per(5)
+    @loan_applications = LoanApplication.page(params[:page]).per(2)
   end
 
   def new
