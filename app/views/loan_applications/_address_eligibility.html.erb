@@ -5,9 +5,9 @@
   <div class="col-xs-12">
     <div class='widget-body'>
       <div class='widget-main'>
-        <%= form_for "/address_check", :html => {:class => "form-inline"} do |f| %>
-          <%= f.text_field :address, :class => "col-xs-10 col-sm-5", :placeholder => "Address" %>
-          <%= f.submit "Submit", :class => "btn btn-info btn-sm" %>
+        <%= form_tag "/address_check", :html => {:class => "form-inline"} do |f| %>
+          <%= text_field_tag "address", "", :class => "col-xs-10 col-sm-5", :placeholder => "Address" %>
+          <%= submit_tag "Submit", :class => "btn btn-info btn-sm" %>
         <% end %>
       </div>
     </div>
