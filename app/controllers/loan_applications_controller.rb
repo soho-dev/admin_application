@@ -15,7 +15,7 @@ class LoanApplicationsController < ApplicationController
 
     respond_to do |format|
       if @loan_application.save
-        format.html { redirect_to @loan_application, notice: 'LoanApplication was successfully created.' }
+        format.html { redirect_to loan_applications_path, notice: 'LoanApplication was successfully created.' }
         format.json { render :show, status: :created, location: @loan_application }
       else
         format.html { render :new }
@@ -35,7 +35,7 @@ class LoanApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @loan_application.update(loan_application_params)
-        format.html { redirect_to @loan_application, notice: 'LoanApplication was successfully updated.' }
+        format.html { redirect_to loan_applications_path, notice: 'LoanApplication was successfully updated.' }
         format.json { render :show, status: :ok, location: @loan_application }
       else
         format.html { render :edit }
