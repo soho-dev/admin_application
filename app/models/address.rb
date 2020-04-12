@@ -1,2 +1,22 @@
 class Address < ApplicationRecord
+
+  def self.create_address(payload)
+    payload = parsed_payload(payload)
+    if payload["message"] == "address_eligible"
+      formatted_address = payload["formatted_address"]
+      address = Address.new
+      address.street = formatted_address["street"]
+      address.city = formatted_address["city"]
+      address.zip = formatted_address["zip"]
+      address.state = formatted_address["state"]
+      address.county = formatted_address["county"]
+      address
+    else
+      nil
+    end
+  end
+
+  def self.parsed_payload(payload)
+    JSON.parse(payload)
+  end
 end

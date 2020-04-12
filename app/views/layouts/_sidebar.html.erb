@@ -1,0 +1,34 @@
+<div class="sidebar responsive" data-sidebar="true" data-sidebar-hover="true" data-sidebar-scroll="true" id="sidebar">
+  <script>
+
+    try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+
+  </script>
+  <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+  </div>
+  <div class="sidebar-shortcuts"></div>
+  <ul class="nav nav-list" style="top: 0px;">
+    <li class="<%= params[:controller] == 'dashboard' ? 'active' : '' %>">
+      <a href="/dashboard">
+        <i class="menu-icon fa fa-tachometer"></i>
+        <span class="menu-text">Dashboard</span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li class="<%= params[:controller] == 'loan_applications' ? 'active' : '' %>">
+      <a href="<%= loan_applications_url %>">
+        <i class="menu-icon fa fa-credit-card"></i>
+        <span class="menu-text">Loan Applications</span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+    <li>
+      <a href="<%= "#" %>">
+        <i class="menu-icon fa fa-users"></i>
+        <span class="menu-text">Users</span>
+      </a>
+      <b class="arrow"></b>
+    </li>
+  </ul>
+  <div class="nav-list"></div>
+</div>

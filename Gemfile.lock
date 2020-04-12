@@ -78,6 +78,7 @@ GEM
       railties (>= 3.2, < 6.1)
     encryptor (3.0.0)
     erubi (1.9.0)
+    excon (0.59.0)
     execjs (2.7.0)
     ffi (1.12.2)
     globalid (0.4.2)
@@ -91,6 +92,9 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jwt (2.2.1)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -206,9 +210,11 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  excon
   jbuilder (~> 2.5)
   jquery-rails
   jwt
+  kaminari
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
   puma (~> 3.7)

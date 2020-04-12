@@ -59,3 +59,5 @@ gem 'jquery-rails'
 gem "attr_encrypted", "~> 3.1.0"
 gem "awesome_print"
 gem 'dotenv-rails'
+gem 'kaminari'
+gem 'excon'

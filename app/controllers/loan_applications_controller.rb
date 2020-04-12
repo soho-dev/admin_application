@@ -3,8 +3,7 @@ class LoanApplicationsController < ApplicationController
   # before_filter :authenticate_admin
   before_action :set_loan_application, only: [:show, :edit, :update, :destroy]
   def index
-     @categories = LoanApplication.all
-     @categories = LoanApplication.page(params[:page]).per(5)
+    @loan_applications = LoanApplication.page(params[:page]).per(5)
   end
 
   def new
@@ -48,8 +47,24 @@ class LoanApplicationsController < ApplicationController
   def destroy
     @loan_application.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'LoanApplication was successfully destroyed.' }
+      format.html { redirect_to loan_applications_url, notice: 'LoanApplication was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def address_check
+    response = LocationService.get_address_info({address: params["address"]})
+    respond_to do |format|
+      if response.status == 200
+        @address = Address.create_address(response.body)
+        if @address.present? && @address.save
+          format.html{ redirect_to new_loan_application_path(address_id: @address.id), notice: "Address Eligible" }
+        else
+          format.html{ redirect_to loan_applications_path, alert: "Address not eligible."}
+        end
+      else
+        format.html{ redirect_to loan_applications_path, alert: "Location service error"}
+      end
     end
   end
 
