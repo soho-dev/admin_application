@@ -22,8 +22,8 @@
       </a>
       <b class="arrow"></b>
     </li>
-    <li>
-      <a href="<%= "#" %>">
+    <li class="<%= params[:controller] == 'users/users' ? 'active' : '' %>">
+      <a href= "<%= users_path %> ">
         <i class="menu-icon fa fa-users"></i>
         <span class="menu-text">Users</span>
       </a>
