@@ -60,9 +60,9 @@
               <%= f.number_field :requested_loan_amount, :class => "col-xs-10 col-sm-5", :placeholder => "Amount", min: 0, step: :any %>
             </div>
           </div>
-          <% if params[:address_id].present? %>
+          <% if params[:address_id].present? || @loan_application.address_id.present?%>
             <div class="form-group">
-              <%= f.hidden_field :address_id, value: params[:address_id] %>
+              <%= f.hidden_field :address_id, value: @loan_application.address_id.present? ? @loan_application.address_id : params[:address_id] %>
             </div>
           <% end %>
           <div class="space-4"></div>
