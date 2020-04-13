@@ -1,7 +1,7 @@
 module Api
   module V1
     class ApplicationServicesController < ApiApplicationController
-      before_action :set_loan_application, only: [:show, :edit, :update, :destroy]
+      before_action :set_loan_application, only: [:show, :edit, :update, :decision_check]
 
       def index
         @loan_applications = LoanApplication.all
@@ -34,11 +34,26 @@ module Api
       def update
         respond_to do |format|
           if @loan_application.update(loan_application_params)
-            format.html { redirect_to @loan_application, notice: 'LoanApplication was successfully updated.' }
             format.json { render :show, status: :ok, location: @loan_application }
           else
-            format.html { render :edit }
             format.json { render json: @loan_application.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+
+      def decision_check
+        respond_to do |format|
+          begin
+            @request_payload = @loan_application.to_hash
+            @response = DecisionService.get_decision(@request_payload)
+            @application_decision = ApplicationDecision.call(@request_payload, @response)
+            if @application_decision.present?
+              format.json { render json: @application_decision, status: 200 }
+            else
+              format.json { render json: { message: "Decision Service error" }.to_json, status: 400 }
+            end
+          rescue StandardError
+            format.json { render json: { message: "Decision Service error" }.to_json, status: 500 }
           end
         end
       end

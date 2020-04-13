@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200411173206) do
+ActiveRecord::Schema.define(version: 20200413090904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(version: 20200411173206) do
     t.string "state"
     t.string "zip"
     t.string "county"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "application_decisions", force: :cascade do |t|
+    t.integer "loan_application_id"
+    t.string "encrypted_request"
+    t.string "encrypted_request_iv"
+    t.string "encrypted_response"
+    t.string "encrypted_response_iv"
+    t.string "decision"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

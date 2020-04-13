@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loan_application_id: 1
+  response: MyString
+  request: MyString
+  decision: MyString
+
+two:
+  loan_application_id: 1
+  response: MyString
+  request: MyString
+  decision: MyString

@@ -1,5 +1,7 @@
 class Address < ApplicationRecord
 
+  has_many :loan_applications
+
   def self.create_address(payload)
     payload = parsed_payload(payload)
     if payload["message"] == "address_eligible"
@@ -18,5 +20,16 @@ class Address < ApplicationRecord
 
   def self.parsed_payload(payload)
     JSON.parse(payload)
+  end
+
+  def to_hash
+    {
+      street: self.street,
+      unit_number: self.unit_number,
+      city: self.city,
+      state: self.state,
+      zip: self.zip,
+      county: self.county
+    } 
   end
 end
