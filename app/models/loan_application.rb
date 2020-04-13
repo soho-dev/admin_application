@@ -6,6 +6,8 @@ class LoanApplication < ApplicationRecord
   attr_encrypted :ssn, key: ENV["ENCRYPTION_KEY"]
 
   before_create :initial_status
+  validates_presence :first_name, :date_of_birth, :ssn, :requested_loan_amount
+
 
   def initial_status
     self.status = "pending"
