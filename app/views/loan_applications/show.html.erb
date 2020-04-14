@@ -7,7 +7,14 @@
 					<i class="ace-icon fa fa-angle-double-right"></i>
 				</small>
 			</h1>
+
+      <div class="btn-group pull-right">
+        <%= link_to "Create Decision", decision_check_loan_application_path(@loan_application), method: :get,  :class => "button btn btn-xs btn btn-info" %>
+      </div>
+
 		</div>
+
+
     <div class="row widget-box">
       <div class="widget-header">
         <h4 class="widget-title">Personal Details</h4>

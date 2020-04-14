@@ -57,16 +57,17 @@ class LoanApplicationsController < ApplicationController
   def decision_check
     respond_to do |format|
       begin
+        @loan_application = LoanApplication.find(params[:id])
         @request_payload = @loan_application.to_hash
         @response = DecisionService.get_decision(@request_payload)
         @application_decision = ApplicationDecision.call(@request_payload, @response)
         if @application_decision.present?
-          format.html { redirect_to @application_decision,  notice: "Decision done successful"  }
+          format.html { render :decision_check,  notice: "Decision done successful"  }
         else
-          format.html { redirect_to @application_decision,  alert: "Decision Service error" }
+          format.html { redirect_to @loan_application,  alert: "Decision Service error" }
         end
       rescue StandardError
-        format.html {  redirect_to @application_decision,  alert: "Decision Service error"  }
+        format.html {  redirect_to @loan_application,  alert: "Decision Service error"  }
       end
     end
   end
