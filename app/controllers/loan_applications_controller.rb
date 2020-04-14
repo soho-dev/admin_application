@@ -61,12 +61,12 @@ class LoanApplicationsController < ApplicationController
         @response = DecisionService.get_decision(@request_payload)
         @application_decision = ApplicationDecision.call(@request_payload, @response)
         if @application_decision.present?
-          format.html { redirect_to @application_decision,  notice: "Decision Service error"  }
+          format.html { redirect_to @application_decision,  notice: "Decision done successful"  }
         else
-          format.html { redirect_to @application_decision,  notice: "Decision Service error" }
+          format.html { redirect_to @application_decision,  alert: "Decision Service error" }
         end
       rescue StandardError
-        format.html {  redirect_to @application_decision,  notice: "Decision Service error"  }
+        format.html {  redirect_to @application_decision,  alert: "Decision Service error"  }
       end
     end
   end

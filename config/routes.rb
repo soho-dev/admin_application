@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   get '/users' => "users#index"
   get '/users/new' => "users#new"
   post '/users' => "users#create"
-  
+
   devise_for :users, controllers: { sessions: 'users/sessions' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :loan_applications
+  resources :loan_applications do
+    get :decision_check, on: :member
+  end
   post "/address_check" => "loan_applications#address_check"
 
   namespace :api, defaults: { format: :json } do
