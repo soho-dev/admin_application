@@ -1,25 +1,25 @@
 class LoanApplicationsController < ApplicationController
 
-  # before_filter :authenticate_admin
-  before_action :set_loan_application, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin
+
+  before_action :set_loan_application, only: [:show, :edit, :update]
   def index
-    @loan_applications = LoanApplication.page(params[:page]).per(2)
+    @loan_applications = LoanApplication.page(params[:page]).per(20)
   end
 
   def new
     @loan_application = LoanApplication.new
+    @address = Address.find(params[:address_id]) if params[:address_id].present?
   end
 
   def create
     @loan_application = LoanApplication.new(loan_application_params)
-
+    @address =  params[:address_id].present? ? Address.find(params[:address_id]) : Address.find(@loan_application.address_id)
     respond_to do |format|
       if @loan_application.save
         format.html { redirect_to loan_applications_path, notice: 'LoanApplication was successfully created.' }
-        format.json { render :show, status: :created, location: @loan_application }
       else
         format.html { render :new }
-        format.json { render json: @loan_application.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,14 +44,6 @@ class LoanApplicationsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @loan_application.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to loan_applications_url, notice: 'LoanApplication was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
-
 
 
   def decision_check
@@ -62,7 +54,7 @@ class LoanApplicationsController < ApplicationController
         @response = DecisionService.get_decision(@request_payload)
         @application_decision = ApplicationDecision.call(@request_payload, @response)
         if @application_decision.present?
-          format.html { render :decision_check,  notice: "Decision done successful"  }
+          format.html { redirect_to @loan_application,  notice: "Decision done successfully"  }
         else
           format.html { redirect_to @loan_application,  alert: "Decision Service error" }
         end

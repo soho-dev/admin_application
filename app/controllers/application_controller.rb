@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def is_admin?
+  def authenticate_admin
     if user_signed_in? && current_user.role != "admin"
         redirect_to root_path
         flash["error"] = "You are not authorized"

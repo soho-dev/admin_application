@@ -9,6 +9,7 @@
 			</h1>
 		</div>
     <% if params[:address_id].present?  || @loan_application.address_id.present? %>
+      <h2> <i class="ace-icon fa fa-home"></i>&nbsp;<%= @address.full_address %> </h2>
       <%= render 'form' %>
     <% else %>
       <%= render 'address_eligibility'%>

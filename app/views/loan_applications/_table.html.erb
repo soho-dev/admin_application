@@ -3,6 +3,7 @@
 <table class="table table-bordered table-hover" id="simple-table">
   <thead>
     <tr>
+      <th>Application ID</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
@@ -14,6 +15,9 @@
   <tbody>
     <% @loan_applications.each do |application| %>
       <tr>
+        <td>
+          <%= application.id %>
+        </td>
         <td>
           <%= application.first_name %>
         </td>
@@ -27,7 +31,13 @@
           <%= application.phone %>
         </td>
         <td>
-          <%= application.status %>
+          <% if application.status.downcase == "approved"%>
+            <span class="label label-sm label-success arrowed-in"><%= application.status.titlecase %></span>
+          <% elsif application.status.downcase == "reject"%>
+            <span class="label label-sm label-danger arrowed-in"><%= application.status.titlecase %></span>
+          <% else%>
+            <span class="label label-sm label-warning arrowed-in"><%= application.status.titlecase %></span>
+          <% end %>
         </td>
         <td>
           <div class="hidden-sm hidden-xs btn-group">
