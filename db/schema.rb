@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20200413090910) do
 
   create_table "application_decisions", force: :cascade do |t|
     t.integer "loan_application_id"
-    t.string "encrypted_request"
+    t.json "encrypted_request"
     t.string "encrypted_request_iv"
-    t.string "encrypted_response"
+    t.json "encrypted_response"
     t.string "encrypted_response_iv"
     t.string "decision"
     t.datetime "created_at", null: false

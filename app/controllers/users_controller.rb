@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # skip_before_action :authenticate_api_user!
-  before_action :is_admin?, only: [ :create, :new ]
+  before_action :authenticate_admin, only: [ :create, :new ]
 
   def index
     @users = User.all

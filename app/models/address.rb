@@ -30,6 +30,10 @@ class Address < ApplicationRecord
       state: self.state,
       zip: self.zip,
       county: self.county
-    } 
+    }
+  end
+
+  def full_address
+    self.street + ", " + self.state + ", " + self.county + " " + self.zip
   end
 end

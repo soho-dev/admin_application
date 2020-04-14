@@ -8,24 +8,22 @@
   </head>
   <body class= "<%= user_signed_in? ? 'no-skin' : 'login-layout light-login' %>">
     <%= render :partial => "layouts/header" %>
-    <% if flash[:notice].present? %>
-      <div class="alert alert-success flash-notice-alert">
-        <%= notice %>
-      </div>
-    <% end %>
-    <% if flash[:alert].present? %>
-      <div class="alert alert-danger flash-notice-alert">
-        <%= alert %>
-      </div>
-    <% end %>
     <div class="main-container" id="main-container">
       <% if user_signed_in? %>
         <%= render :partial => "layouts/sidebar" %>
       <% end %>
       <div class="main-content">
-        <% if user_signed_in? %>
-          <%= render :partial => "layouts/breadcrumbs" %>
+        <% if flash[:notice].present? %>
+          <div class="alert alert-success flash-notice-alert">
+            <%= notice %>
+          </div>
         <% end %>
+        <% if flash[:alert].present? %>
+          <div class="alert alert-danger flash-notice-alert">
+            <%= alert %>
+          </div>
+        <% end %>
+
         <%= yield %>
       </div>
     </div>
