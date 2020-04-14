@@ -7,55 +7,55 @@
       <div class='widget-main'>
         <%= form_for @loan_application, :html => {:class => "form-horizontal"} do |f| %>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">First Name</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">First Name*</label>
             <div class="col-sm-9">
               <%= f.text_field :first_name, :class => "col-xs-10 col-sm-5", :placeholder => "First Name" %>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Last Name</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Last Name*</label>
             <div class="col-sm-9">
               <%= f.text_field :last_name, :class => "col-xs-10 col-sm-5", :placeholder => "Last Name" %>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Date of Birth</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Date of Birth*</label>
             <div class="col-sm-9">
               <%= f.date_field :date_of_birth, :class => "col-xs-10 col-sm-5", :placeholder => "DOB" %>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">SSN</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">SSN*</label>
             <div class="col-sm-9">
               <%= f.text_field :ssn, :class => "col-xs-10 col-sm-5", :placeholder => "SSN" %>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Email</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Email*</label>
             <div class="col-sm-9">
               <%= f.text_field :email, :class => "col-xs-10 col-sm-5", :placeholder => "Email" %>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Phone</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Phone*</label>
             <div class="col-sm-9">
               <%= f.text_field :phone, :class => "col-xs-10 col-sm-5", :placeholder => "Phone" %>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Annual Income</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Annual Income*</label>
             <div class="col-sm-9">
               <%= f.number_field :income, :class => "col-xs-10 col-sm-5", :placeholder => "Annual Income", min: 0, step: :any  %>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Income Type</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Income Type*</label>
             <div class="col-sm-9">
                 <%= f.select :income_type, ["Salary", "Self-Employed", "Rental Income"], :class => "col-xs-10 col-sm-5", prompt: "Select"%>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Require Loan Amount</label>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Require Loan Amount*</label>
             <div class="col-sm-9">
               <%= f.number_field :requested_loan_amount, :class => "col-xs-10 col-sm-5", :placeholder => "Amount", min: 0, step: :any %>
             </div>

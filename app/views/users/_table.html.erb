@@ -3,6 +3,7 @@
 <table class="table table-bordered table-hover" id="simple-table">
   <thead>
     <tr>
+      <th>ID</th>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
@@ -13,6 +14,9 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td>
+          <%= user.id %>
+        </td>
         <td>
           <%= user.first_name %>
         </td>

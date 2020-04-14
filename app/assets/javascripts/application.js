@@ -27,3 +27,7 @@
 //= require bootbox.min
 //= require custom
 //= require jquery.etalage.min
+//= require highcharts
+//= require exporting
+//= require series-label
+//= require dashboard
