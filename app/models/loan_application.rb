@@ -6,7 +6,7 @@ class LoanApplication < ApplicationRecord
   attr_encrypted :ssn, key: ENV["ENCRYPTION_KEY"]
 
   before_create :initial_status
-  validates_presence :first_name, :date_of_birth, :ssn, :requested_loan_amount
+  validates_presence_of :first_name, :last_name, :date_of_birth, :ssn, :requested_loan_amount, :email, :phone
 
 
   def initial_status

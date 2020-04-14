@@ -23,3 +23,14 @@
 
 
  */
+ .columnbreak {
+   float: left !important;
+   width: 50% !important;
+ }
+
+ /* Clear floats after the columns */
+ .rowdashboard:after {
+   content: "";
+   display: table;
+   clear: both;
+ }
