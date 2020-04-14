@@ -1,0 +1,79 @@
+<div class="main-content-inner">
+  <div class="page-content">
+    <div class="page-header">
+			<h1>
+				Loan Application
+				<small>
+					<i class="ace-icon fa fa-angle-double-right"></i>
+				</small>
+			</h1>
+		</div>
+    <div class="row widget-box">
+      <div class="widget-header">
+        <h4 class="widget-title">Personal Details</h4>
+      </div>
+      <div class="col-xs-12">
+        <div class='widget-body'>
+          <div class='widget-main'>
+            <form class="form-horizontal" >
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">First Name</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :first_name, @loan_application.first_name, :class => "col-xs-10 col-sm-5" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Last Name</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :last_name, @loan_application.last_name, :class => "col-xs-10 col-sm-5" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Date of Birth</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :date_of_birth, @loan_application.date_of_birth, :class => "col-xs-10 col-sm-5" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">SSN</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :ssn, @loan_application.ssn, :class => "col-xs-10 col-sm-5" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Email</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :email, @loan_application.email, :class => "col-xs-10 col-sm-5" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Phone</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :phone, @loan_application.phone, :class => "col-xs-10 col-sm-5" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Annual Income</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :income, @loan_application.income, :class => "col-xs-10 col-sm-5"  %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Income Type</label>
+                <div class="col-sm-9">
+                    <%= text_field_tag :income_type, @loan_application.income_type, :class => "col-xs-10 col-sm-5"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Require Loan Amount</label>
+                <div class="col-sm-9">
+                  <%= text_field_tag :requested_loan_amount, @loan_application.requested_loan_amount, :class => "col-xs-10 col-sm-5" %>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

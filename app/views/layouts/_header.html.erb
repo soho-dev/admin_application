@@ -23,8 +23,8 @@
       <ul class="nav ace-nav">
         <% if user_signed_in? %>
           <li class="green">
-            <a href="<%= destroy_user_session_path %>" method="<%= :delete %>">
-              Welcome: <%= current_user.email %>
+            <a href="#">
+              Welcome: <%= current_user.first_name %>
             </a>
           </li>
           <li class="grey">

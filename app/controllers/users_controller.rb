@@ -24,9 +24,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    @users = User.find(params[:id])
-  end
 
   def edit
 

@@ -44,11 +44,30 @@ class LoanApplicationsController < ApplicationController
     end
   end
 
-  def destroy
-    @loan_application.destroy
+  # def destroy
+  #   @loan_application.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to loan_applications_url, notice: 'LoanApplication was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
+
+
+
+  def decision_check
     respond_to do |format|
-      format.html { redirect_to loan_applications_url, notice: 'LoanApplication was successfully destroyed.' }
-      format.json { head :no_content }
+      begin
+        @request_payload = @loan_application.to_hash
+        @response = DecisionService.get_decision(@request_payload)
+        @application_decision = ApplicationDecision.call(@request_payload, @response)
+        if @application_decision.present?
+          format.html { redirect_to @application_decision,  notice: "Decision Service error"  }
+        else
+          format.html { redirect_to @application_decision,  notice: "Decision Service error" }
+        end
+      rescue StandardError
+        format.html {  redirect_to @application_decision,  notice: "Decision Service error"  }
+      end
     end
   end
 
@@ -60,10 +79,10 @@ class LoanApplicationsController < ApplicationController
         if @address.present? && @address.save
           format.html{ redirect_to new_loan_application_path(address_id: @address.id), notice: "Address Eligible" }
         else
-          format.html{ redirect_to loan_applications_path, alert: "Address not eligible."}
+          format.html{ redirect_to loan_applications_path, alert: "Address not eligible." }
         end
       else
-        format.html{ redirect_to loan_applications_path, alert: "Location service error"}
+        format.html{ redirect_to loan_applications_path, alert: "Location service error" }
       end
     end
   end
