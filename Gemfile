@@ -61,3 +61,4 @@ gem "awesome_print"
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'excon'
+gem 'rack-cors'
