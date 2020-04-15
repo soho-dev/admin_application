@@ -10,6 +10,7 @@ module SohoPoc
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     # config.load_defaults 5.1
+    config.enable_dependency_loading = true
     config.autoload_paths += Dir["#{Rails.root}/lib"]
     config.autoload_paths += Dir["#{Rails.root}/app/"]
     # Settings in config/environments/* take precedence over those specified here.

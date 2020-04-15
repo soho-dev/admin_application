@@ -16,7 +16,7 @@ module Api
               format.json  { render :json => { message: "session expire or invalid access token." }, status: 401 }
             end
           end
-        rescue JWT::ExpiredSignature, JWT::VerificationError
+        rescue JWT::ExpiredSignature, JWT::VerificationError, JWT::DecodeError
           respond_to do |format|
             format.json  { render :json => { message: "session expire or invalid access token." }, status: 401 }
           end
