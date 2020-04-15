@@ -31,13 +31,7 @@
           <%= application.phone %>
         </td>
         <td>
-          <% if application.status.downcase == "approved"%>
-            <span class="label label-sm label-success arrowed-in"><%= application.status.titlecase %></span>
-          <% elsif application.status.downcase == "rejected"%>
-            <span class="label label-sm label-danger arrowed-in"><%= application.status.titlecase %></span>
-          <% else%>
-            <span class="label label-sm label-warning arrowed-in"><%= application.status.titlecase %></span>
-          <% end %>
+          <span class="label label-sm label-<%= application_status_class[application.status.downcase] %> arrowed-in"><%= application.status.titlecase %></span>
         </td>
         <td>
           <div class="hidden-sm hidden-xs btn-group">

@@ -8,23 +8,30 @@
     <div id="barchart" style="height: 300px;"></div>
   </div>
 </div>
+<hr />
 <div class="page-content">
 <div class="row">
   <div class="col-xs-12">
   <div id="table">
-    <h3><center>Loan Applications</center></h3>
+    <h3>Recent Loan Applications</h3>
     <table class="table table-bordered table-hover" id="simple-table">
       <thead>
         <tr>
+          <th>Application ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
           <th>Phone</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <% @loan_applications.each do |application| %>
           <tr>
+            <td>
+              <%= application.id %>
+            </td>
             <td>
               <%= application.first_name %>
             </td>
@@ -36,6 +43,17 @@
             </td>
             <td>
               <%= application.phone %>
+            </td>
+            <td>
+              <span class="label label-sm label-<%= application_status_class[application.status.downcase] %> arrowed-in"><%= application.status.titlecase %></span>
+            </td>
+            <td>
+              <div class="hidden-sm hidden-xs btn-group">
+                <%= link_to "<span class='ace-icon fa fa-check bigger-120'>Show</span>".html_safe, application, :class => "button btn btn-xs btn-success" %>
+              </div>
+              <div class="hidden-sm hidden-xs btn-group">
+                <%= link_to "<span class='ace-icon fa fa-pencil bigger-120'>Edit</span>".html_safe, edit_loan_application_path(application), :class => "button btn btn-xs btn-info" %>
+              </div>
             </td>
           </tr>
         <% end %>
@@ -57,7 +75,7 @@ chart: {
     type: 'pie'
 },
 title: {
-    text: 'Loan market shares in January, 2019'
+    text: 'Loan Applications in January, 2020'
 },
 tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -117,10 +135,7 @@ Highcharts.chart('barchart', {
         type: 'column'
     },
     title: {
-        text: 'Loan market shares. January, 2019'
-    },
-    subtitle: {
-        text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>'
+        text: 'Loan Applications. January, 2020'
     },
     accessibility: {
         announceNewData: {
@@ -132,7 +147,7 @@ Highcharts.chart('barchart', {
     },
     yAxis: {
         title: {
-            text: 'Total percent market share'
+            text: 'Total percent'
         }
 
     },

@@ -10,7 +10,13 @@
 			</h1>
 
 		</div>
-    <h2> <i class="ace-icon fa fa-home"></i>&nbsp;<%= @loan_application.address.full_address %> </h2>
+    <h2>
+      <i class="ace-icon fa fa-home"></i>&nbsp;
+      <%= @loan_application.address.full_address %>
+    </h2>
+    <h3 class= "label label-lg label-<%= application_status_class[@loan_application.status.downcase] %> arrowed-right">
+      Decision: <%= @loan_application.status.titlecase%>
+    </h3>
     <% if @loan_application.last_application_decision.present?  && @loan_application.last_application_decision.decision == "eligible"%>
       <div class="row widget-box">
         <%= render "decision_details" %>

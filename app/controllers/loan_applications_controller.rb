@@ -4,7 +4,7 @@ class LoanApplicationsController < ApplicationController
 
   before_action :set_loan_application, only: [:show, :edit, :update]
   def index
-    @loan_applications = LoanApplication.page(params[:page]).per(20)
+    @loan_applications = LoanApplication.order("created_at DESC").page(params[:page]).per(20)
   end
 
   def new
@@ -74,8 +74,10 @@ class LoanApplicationsController < ApplicationController
         else
           format.html{ redirect_to loan_applications_path, alert: "Address not eligible." }
         end
+      elsif response.status == 404
+        format.html{ redirect_to loan_applications_path, alert: "Address not eligible." }
       else
-        format.html{ redirect_to loan_applications_path, alert: "Location service error" }
+        format.html{ redirect_to loan_applications_path, alert: "Location service error." }
       end
     end
   end
