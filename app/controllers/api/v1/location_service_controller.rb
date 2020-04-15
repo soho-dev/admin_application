@@ -11,7 +11,7 @@ module Api
             else
               format.json{ render json: { message: "Address not eligible." }, status: 404 }
             end
-          elsif response.status == 404
+          elsif @response.status == 404
             format.json{ render json: { message: "Address not eligible." }, status: 404 }
           else
             format.json{ render json: { message: "Location service error" }, status: 500 }

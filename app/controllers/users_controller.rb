@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_registration_params)
-    @user.password = Devise.friendly_token.first(8)
+    @user.password = "12345678"
     respond_to do |format|
       if @user.valid?
         @user.save

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Admin Application</title>
+    <title>Admin Portal</title>
     <% if Rails.env == "production"%>
       <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <% end%>
@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
-  <body class= "<%= user_signed_in? ? 'no-skin' : 'login-layout light-login' %>">
+  <body class= "<%= user_signed_in? ? 'no-skin' : 'login-layout light-login' %>" style="font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;">
     <%= render :partial => "layouts/header" %>
     <div class="main-container" id="main-container">
       <% if user_signed_in? %>
