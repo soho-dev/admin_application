@@ -10,6 +10,27 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+ *= require bootstrap.min
+ *= require ace.min
+ *= require ace-rtl.min
+ *= require ace-part2.min
+ *= require font-awesome/css/font-awesome.min
+ *= require jquery-ui.min
+ *= require jquery-ui.custom.min
+ *= require custom
+ *= require etalage
+ *= require nivo-slider
+
+
  */
+ .columnbreak {
+   float: left !important;
+   width: 50% !important;
+ }
+
+ /* Clear floats after the columns */
+ .rowdashboard:after {
+   content: "";
+   display: table;
+   clear: both;
+ }

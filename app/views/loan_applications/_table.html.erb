@@ -1,0 +1,62 @@
+<h3>Loan Applications</h3>
+<br />
+<div class="col-xs-3 no-padding-left">
+  <%= form_tag loan_applications_url, :html => {:class => "form-search"}, method: "get" do |f| %>
+    <div class="input-group">
+      <%= select_tag "status_search", options_for_select([["Pending", "pending"], ["Approved", "approved"], ["Rejected", "rejected"]], params[:status_search]), :class => "form-control search-query", prompt: "Select" %>
+      <span class="input-group-btn">
+        <%= button_tag(type: "submit", class: "btn btn-info btn-sm") do %>
+          <i class="fa fa-search"></i> Search
+      <% end %>
+  		</span>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Create New Application", new_loan_application_path, :class => "btn btn-info btn-sm pull-right" %>
+<table class="table table-bordered table-hover" id="simple-table">
+  <thead>
+    <tr>
+      <th>Application ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @loan_applications.each do |application| %>
+      <tr>
+        <td>
+          <%= application.id %>
+        </td>
+        <td>
+          <%= application.first_name %>
+        </td>
+        <td>
+          <%= application.last_name %>
+        </td>
+        <td>
+          <%= application.email %>
+        </td>
+        <td>
+          <%= application.phone %>
+        </td>
+        <td>
+          <span class="label label-sm label-<%= application_status_class[application.status.downcase] %> arrowed-in"><%= application.status.titlecase %></span>
+        </td>
+        <td>
+          <div class="hidden-sm hidden-xs btn-group">
+            <%= link_to "<span class='ace-icon fa fa-check bigger-120'>Show</span>".html_safe, application, :class => "button btn btn-xs btn-success" %>
+          </div>
+          <div class="hidden-sm hidden-xs btn-group">
+            <%= link_to "<span class='ace-icon fa fa-pencil bigger-120'>Edit</span>".html_safe, edit_loan_application_path(application), :class => "button btn btn-xs btn-info" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    <br/>
+  </tbody>
+</table>
+<%= paginate @loan_applications %>

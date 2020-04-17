@@ -10,6 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
+//= require jquery.min
 //= require turbolinks
-//= require_tree .
+//= require jquery_ujs
+//= require bootstrap.min
+//= require bootstrap-editable.min
+//= require bootstrap-multiselect.min
+//= require fwslider
+//= require jquery.nivo.slider
+//= require slides.min.jquery
+//= require ace-elements.min
+//= require ace-extra.min
+//= require chosen.jquery.min
+//= require jquery-ui.min
+//= require jquery-ui.custom.min
+//= require bootbox.min
+//= require custom
+//= require jquery.etalage.min
+//= require highcharts
+//= require exporting
+//= require series-label
+//= require dashboard

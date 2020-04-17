@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: soho_poc_production
-  username: soho_poc
-  password: <%= ENV['SOHO_POC_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>

@@ -1,0 +1,29 @@
+<div class="main-content-inner">
+  <div class="page-content">
+    <div class="page-header">
+			<h1>
+				Loan Application
+				<small>
+					<i class="ace-icon fa fa-angle-double-right"></i>
+				</small>
+          <%= link_to "Check Decision", decision_check_loan_application_path(@loan_application), method: :get,  :class => "btn btn-small btn-info pull-right" %>
+			</h1>
+
+		</div>
+    <h2>
+      <i class="ace-icon fa fa-home"></i>&nbsp;
+      <%= @loan_application.address.full_address %>
+    </h2>
+    <h3 class= "label label-lg label-<%= application_status_class[@loan_application.status.downcase] %> arrowed-right">
+      Application Status: <%= @loan_application.status.titlecase%>
+    </h3>
+    <% if @loan_application.last_application_decision.present?  && @loan_application.last_application_decision.decision == "eligible"%>
+      <div class="row widget-box">
+        <%= render "decision_details" %>
+      </div>
+    <% end %>
+    <div class="row widget-box">
+      <%= render "personal_details" %>
+    </div>
+  </div>
+</div>
