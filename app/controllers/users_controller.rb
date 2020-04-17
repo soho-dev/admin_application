@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  # skip_before_action :authenticate_api_user!
-  before_action :authenticate_admin, only: [ :create, :new ]
+  before_action :authenticate_admin
 
   def index
     @users = User.all
@@ -19,23 +18,10 @@ class UsersController < ApplicationController
         format.html { redirect_to users_path, notice: 'User was successfully created.' }
       else
         format.html { render :new, notice: @user.errors }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-
-  def edit
-
-  end
-
-  def update
-
-  end
-
-  def destroy
-
-  end
 
   private
   def user_registration_params

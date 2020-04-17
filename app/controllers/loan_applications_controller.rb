@@ -4,7 +4,9 @@ class LoanApplicationsController < ApplicationController
 
   before_action :set_loan_application, only: [:show, :edit, :update]
   def index
-    @loan_applications = LoanApplication.order("created_at DESC").page(params[:page]).per(20)
+    statuses = %w[pending approved rejected]
+    search_params = %w[pending approved rejected] & [params[:status_search]] if params[:status_search].present?
+    @loan_applications = LoanApplication.where(status: search_params.present? ? search_params : statuses).order("created_at DESC").page(params[:page]).per(20)
   end
 
   def new
@@ -17,7 +19,7 @@ class LoanApplicationsController < ApplicationController
     @address =  params[:address_id].present? ? Address.find(params[:address_id]) : Address.find(@loan_application.address_id)
     respond_to do |format|
       if @loan_application.save
-        format.html { redirect_to loan_applications_path, notice: 'LoanApplication was successfully created.' }
+        format.html { redirect_to @loan_application, notice: 'LoanApplication was successfully created.' }
       else
         format.html { render :new }
       end
@@ -35,11 +37,9 @@ class LoanApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @loan_application.update(loan_application_params)
-        format.html { redirect_to loan_applications_path, notice: 'LoanApplication was successfully updated.' }
-        format.json { render :show, status: :ok, location: @loan_application }
+        format.html { redirect_to @loan_application, notice: 'LoanApplication was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @loan_application.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,12 +72,12 @@ class LoanApplicationsController < ApplicationController
         if @address.present? && @address.save
           format.html{ redirect_to new_loan_application_path(address_id: @address.id), notice: "Address Eligible" }
         else
-          format.html{ redirect_to loan_applications_path, alert: "Address not eligible." }
+          format.html{ redirect_to new_loan_application_path, alert: "Address not eligible." }
         end
       elsif response.status == 404
-        format.html{ redirect_to loan_applications_path, alert: "Address not eligible." }
+        format.html{ redirect_to new_loan_application_path, alert: "Address not eligible." }
       else
-        format.html{ redirect_to loan_applications_path, alert: "Location service error." }
+        format.html{ redirect_to new_loan_application_path, alert: "Location service error." }
       end
     end
   end
